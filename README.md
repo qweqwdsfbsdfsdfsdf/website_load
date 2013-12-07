@@ -30,6 +30,5 @@ in your script's directory. This works only if .py files associated with Python 
 coming soon
 
 
-*inspired by
-SYNflood.py - A multithreaded SYN Flooder By Brandon Smith | 
-GAS - Ground-based Antisatellite System by kasthack*
+*inspired by*
+*SYNflood.py - A multithreaded SYN Flooder By Brandon Smith | GAS - Ground-based Antisatellite System by kasthack*
