@@ -1,7 +1,7 @@
 #website_load
 website load is a python script for website load testing
 
-##using (Windows)
+###using (Windows)
 
 * You can use [binary version of this script](https://www.dropbox.com/s/mkzrrkv5hb3k8kx/website_load.zip) *(32-64 bit, no Python needed)*, that I've built for you
 
@@ -26,5 +26,5 @@ in your script's directory. This works only if .py files associated with Python 
 
 
 
-##using (Linux)
+###using (Linux)
 coming soon
