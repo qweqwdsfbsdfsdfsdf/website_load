@@ -30,7 +30,7 @@ in your script's directory. This works only if .py files associated with Python 
 coming soon
 
 
-*inspired by*
+##*inspired by*
 
   *SYNflood.py - A multithreaded SYN Flooder By Brandon Smith*
   
