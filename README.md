@@ -17,6 +17,9 @@ in your script's directory. This works only if .py files associated with Python 
 
 ![screenshot](http://i.imgur.com/BEPavfm.png)
 
+##### (or)
+* You can use [binary version of this script](https://www.dropbox.com/s/mkzrrkv5hb3k8kx/website_load.zip), that I've built for you 
+
 Also you can build your own .exe file with this script using cx-freeze
 
 ##using (Linux)
