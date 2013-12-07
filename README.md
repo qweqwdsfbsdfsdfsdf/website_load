@@ -17,6 +17,7 @@ in your script's directory. This works only if .py files associated with Python 
 
 ![screenshot](http://i.imgur.com/BEPavfm.png)
 
+Also you can build your own .exe file with this script using cx-freeze
 
 ##using (Linux)
 coming soon
