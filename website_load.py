@@ -68,16 +68,19 @@ class Checker(threading.Thread):
                                 except:
                                         print("Can't check website status")
 
+#  some input url preparations
 if len(sys.argv) == 2:
         target = sys.argv[1]
 else:
         print('Enter target url or IP ( e.g. "http://google.com" or "http://195.208.0.133"):')
         target = input()
 
-target = urllib.parse.urlparse(target)
+target = urllib.parse.urlparse(target + '/')
+
 if target.netloc.__len__() == 0:
         print("Incorrect url input")
         exit()
+#  preparations ended / threads starting
 
 print("Flooding %s" % target.netloc)
 Checker().start()
