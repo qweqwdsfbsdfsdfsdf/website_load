@@ -3,7 +3,7 @@ website load is a python script for website load testing
 
 ###using (Windows)
 
-* You can use [binary version of this script](https://www.dropbox.com/s/mkzrrkv5hb3k8kx/website_load.zip) *(32-64 bit, no Python needed)*, that I've built for you
+* You can use [binary version of this script](https://mega.co.nz/#F!7VMjBZxL!Eczrfz7jBq4z1WNeW77q7A) *(32-64 bit, no Python needed)*, that I've built for you
 
   Also you can build your own .exe file with this script using cx-freeze
 
