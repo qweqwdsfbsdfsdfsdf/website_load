@@ -31,4 +31,7 @@ coming soon
 
 
 *inspired by*
-*SYNflood.py - A multithreaded SYN Flooder By Brandon Smith | GAS - Ground-based Antisatellite System by kasthack*
+
+          *SYNflood.py - A multithreaded SYN Flooder By Brandon Smith*
+          
+          *GAS - Ground-based Antisatellite System by kasthack*
