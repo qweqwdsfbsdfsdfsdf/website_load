@@ -11,7 +11,7 @@ import sys
 
 # Global variables
 target = None  # e.g. "http://google.com" or "http://195.208.0.133"
-thread_limit = 200  # default 200
+thread_limit = 500  # Number of threads
 user_agent = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
 # Global variables end
 
