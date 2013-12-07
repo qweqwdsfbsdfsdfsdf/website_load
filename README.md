@@ -28,3 +28,8 @@ in your script's directory. This works only if .py files associated with Python 
 
 ###using (Linux)
 coming soon
+
+
+*inspired by
+SYNflood.py - A multithreaded SYN Flooder By Brandon Smith
+GAS - Ground-based Antisatellite System by kasthack*
