@@ -2,6 +2,13 @@
 website load is a python script for website load testing
 
 ##using (Windows)
+
+* You can use [binary version of this script](https://www.dropbox.com/s/mkzrrkv5hb3k8kx/website_load.zip) *(no Python needed)*, that I've built for you
+
+  Also you can build your own .exe file with this script using cx-freeze
+
+##### (or)
+
 *(You'll need [Python 3.3] (http://www.python.org/download/) (or higher) in your system)*
 
 * You can simply drag'n'drop your `website_load.py` on your python.exe file
@@ -17,10 +24,7 @@ in your script's directory. This works only if .py files associated with Python 
 
 ![screenshot](http://i.imgur.com/BEPavfm.png)
 
-##### (or)
-* You can use [binary version of this script](https://www.dropbox.com/s/mkzrrkv5hb3k8kx/website_load.zip), that I've built for you 
 
-Also you can build your own .exe file with this script using cx-freeze
 
 ##using (Linux)
 coming soon
