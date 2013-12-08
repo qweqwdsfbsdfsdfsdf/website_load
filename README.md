@@ -27,7 +27,13 @@ in your script's directory. This works only if .py files associated with Python 
 
 
 ###using (Linux)
-coming soon
+
+* Run this script with terminal using command: `python3.3 website_load.py -http://example.com`
+
+*You'll need Python 3.3 or higher for running this script. Python3.3 is already installed in current Ubuntu version*
+
+
+![Screenshot](http://i.imgur.com/HZxcbRO.png)
 
 
 ##*inspired by*
