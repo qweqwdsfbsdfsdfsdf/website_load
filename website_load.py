@@ -10,7 +10,7 @@ import sys
 import string
 
 # Global parameters
-thread_limit = 50  # Number of threads
+thread_limit = 250  # Number of threads
 user_agent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1734.5 Safari/537.36"
 # Global parameters end
 
