@@ -17,9 +17,9 @@ website load is a python script for website load testing
 
 ##### (or)
 
-* You can run it directly from cmd.exe (with parameter or not)
+* You can run it directly from cmd.exe
 
-  ` website_load.py -http://example.com`
+  ` website_load.py`
 in your script's directory. This works only if .py files associated with Python launcher
 
 ![screenshot](http://i.imgur.com/BEPavfm.png)
