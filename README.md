@@ -11,8 +11,6 @@ website_load
 
 ![Console](http://i.imgur.com/HJeJglN.png)
 
-Console
-
 ####inspired by
 
   *SYNflood.py - A multithreaded SYN Flooder By Brandon Smith*
