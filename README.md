@@ -2,15 +2,14 @@
 
 win-builds can be downloaded [here] (https://mega.co.nz/#F!7VMjBZxL!Eczrfz7jBq4z1WNeW77q7A)
 
-####website_load 
-simple way for stress-testing your own websites *(Python 3 needed)*
+website_load
+------
+*simple way for stress-testing your own websites (Python 3 needed)*
 
 
-![Screenshot](http://i.imgur.com/4liTkC7.png)
+![GUI](http://i.imgur.com/4liTkC7.png)
 
-GUI
-
-![Screenshot](http://i.imgur.com/HJeJglN.png)
+![Console](http://i.imgur.com/HJeJglN.png)
 
 Console
 
