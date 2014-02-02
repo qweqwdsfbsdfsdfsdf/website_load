@@ -1,44 +1,8 @@
-#website_load
-website load is a python script for website load testing
+![Screenshot](https://dl.dropboxusercontent.com/u/11259516/Web-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B/website_load/sources/website_load.png)
+#website_load 
+Builds can be downloaded [here] (https://mega.co.nz/#F!7VMjBZxL!Eczrfz7jBq4z1WNeW77q7A)
 
-![Screenshot](http://i.imgur.com/RiapmQn.png)
-
-UPDATE: GUI added
-
-
-###using (Windows)
-
-* You can use [binary version of this script](https://mega.co.nz/#F!7VMjBZxL!Eczrfz7jBq4z1WNeW77q7A) *(no Python needed)*, that I've built for you
-
-  Also you can build your own .exe file with this script using cx-freeze
-
-##### (or)
-
-*(You'll need [Python 3.3] (http://www.python.org/download/) (or higher) in your system)*
-
-* You can simply drag'n'drop your `website_load.py` on your python.exe file
-
-![Screenshot](http://i.imgur.com/OqVGN90.png)
-
-##### (or)
-
-* You can run it directly from cmd.exe
-
-  ` website_load.py`
-in your script's directory. This works only if .py files associated with Python launcher
-
-![screenshot](http://i.imgur.com/BEPavfm.png)
-
-
-
-###using (Linux)
-
-* Run this script with terminal using command: `python3.3 website_load.py -http://example.com`
-
-*You'll need Python 3.3 or higher for running this script. Python3.3 is already installed in current Ubuntu version*
-
-
-![Screenshot](http://i.imgur.com/HZxcbRO.png)
+![Screenshot](http://i.imgur.com/4liTkC7.png)
 
 
 ##*inspired by*
