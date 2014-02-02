@@ -1,8 +1,9 @@
 #website_load
 website load is a python script for website load testing
 
-UPDATE: GUI added
 ![Screenshot](http://i.imgur.com/RiapmQn.png)
+
+UPDATE: GUI added
 
 
 ###using (Windows)
