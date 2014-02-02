@@ -48,7 +48,7 @@ class Interface():
 
     referrer = ""
     request_methods = ["HEAD", "GET", "POST"]
-    thread_limit = 2000
+    thread_limit = 1500
     append_rand_string_to_url = False
     min_timeout = 30
     max_timeout = 30
