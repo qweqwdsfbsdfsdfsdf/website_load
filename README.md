@@ -1,6 +1,10 @@
 #website_load
 website load is a python script for website load testing
 
+UPDATE: GUI added
+![Screenshot](http://i.imgur.com/RiapmQn.png)
+
+
 ###using (Windows)
 
 * You can use [binary version of this script](https://mega.co.nz/#F!7VMjBZxL!Eczrfz7jBq4z1WNeW77q7A) *(no Python needed)*, that I've built for you
