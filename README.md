@@ -2,8 +2,9 @@
 
 win-builds can be downloaded [here] (https://mega.co.nz/#F!7VMjBZxL!Eczrfz7jBq4z1WNeW77q7A)
 
-###website_load 
-simple way for stress-testing your own websites
+####website_load 
+simple way for stress-testing your own websites *(Python 3 needed)*
+
 
 ![Screenshot](http://i.imgur.com/4liTkC7.png)
 
@@ -13,7 +14,7 @@ GUI
 
 Console
 
-####*inspired by*
+####inspired by
 
   *SYNflood.py - A multithreaded SYN Flooder By Brandon Smith*
   
