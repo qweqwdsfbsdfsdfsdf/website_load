@@ -4,7 +4,7 @@ win-builds can be downloaded [here] (https://mega.co.nz/#F!7VMjBZxL!Eczrfz7jBq4z
 
 website_load
 ------
-*simple way for stress-testing your own websites (Python 3 needed)*
+*simple way for stress-testing your own websites ([Python 3](http://www.python.org/download/) needed)*
 
 
 ![GUI](http://i.imgur.com/4liTkC7.png)
