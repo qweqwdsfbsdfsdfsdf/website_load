@@ -45,15 +45,16 @@ class Interface():
     proxies = []  # in file 'proxies.txt' if none - attack directly
     url = []  # from file 'urls.txt' or enter manually
     target = None
+    cur_header = None
 
-    referrer = ""
-    request_methods = ["HEAD", "GET", "POST"]
+    referrer = "website_load"
+    request_methods = ["GET", "POST"]
     thread_limit = 1500
     append_rand_string_to_url = False
     min_timeout = 30
     max_timeout = 30
     wait_for_response = True
-    cur_header = None
+
 
     def read_data(self):
         self.read_useragents()

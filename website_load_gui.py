@@ -4,6 +4,7 @@
 
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication
+
 from website_load import *
 
 
@@ -28,8 +29,6 @@ def fill_params():
     interface.max_timeout = int(window.timeout_max.text())
     interface.wait_for_response = window.wait_for_response.isChecked()
     interface.append_rand_string_to_url = window.append_random_chars.isChecked()
-
-    # print(interface.user_agents, interface.url, interface.proxies, interface.referrer, interface.thread_limit, interface.request_methods, interface.min_timeout, interface.max_timeout, interface.wait_for_response, interface.append_rand_string_to_url, sep="\n")
 
 
 def clickstart_handler():
