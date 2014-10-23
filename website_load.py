@@ -12,7 +12,7 @@ import string
 
 
 
-referrer = "website_load"
+referrer = ""
 request_methods = ["GET", "POST"]
 thread_limit = 1500
 append_rand_string_to_url = False
