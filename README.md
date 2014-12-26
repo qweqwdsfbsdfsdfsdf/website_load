@@ -4,9 +4,6 @@ website_load
 ------
 *simple way for stress-testing your own websites ([Python 3](http://www.python.org/download/) needed)*
 
-
-![GUI](http://i.imgur.com/4liTkC7.png)
-
 ![Console](http://i.imgur.com/HJeJglN.png)
 
 ####inspired by
