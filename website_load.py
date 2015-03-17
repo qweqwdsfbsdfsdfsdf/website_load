@@ -14,7 +14,7 @@ import string
 
 
 referrer = ""
-request_methods = ["GET", "POST"]
+request_methods = ["GET", "POST", "HEAD"]
 thread_limit = 1500
 append_rand_string_to_url = False
 min_timeout = 30
@@ -41,7 +41,7 @@ def set_header():
     cur_header = {
     "User-agent": random.choice(user_agents),
     "Referrer": referrer,
-    "Accept-Encoding": "gzip,deflate",
+    "Accept-Encoding": "gzip, deflate",
     "Connection": "Keep-Alive",
     "Cookie": cookie}
     return cur_header
@@ -55,7 +55,7 @@ def read_useragents():
     file = open("settings/useragents.txt", "a+")
     user_agents = read_file_to_array(file)
     if len(user_agents) == 0:
-        def_user_agent = 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1797.2 Safari/537.36'
+        def_user_agent = 'Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
         user_agents.append(
             def_user_agent)
         file.write(
